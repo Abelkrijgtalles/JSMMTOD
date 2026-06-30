@@ -1,0 +1,6 @@
+{
+  "text.autoconfig.jsmmtod.option.twentyFourHourClock": "Use 24 hour clock?",
+  "text.autoconfig.jsmmtod.option.twentyFourHourClock.@Tooltip": "This won't do anything if you have show ticks selected.",
+  "text.autoconfig.jsmmtod.option.whatToShow": "Show ticks or time?",
+  "text.autoconfig.jsmmtod.title": "Options for JUST SHOW ME MY TIME OF DAY!"
+}

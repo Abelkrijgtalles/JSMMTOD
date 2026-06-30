@@ -1,9 +1,12 @@
 package nl.abelkrijgtalles.jsmmtod;
 
+import me.shedaniel.autoconfig.AutoConfigClient;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.debug.DebugScreenDisplayer;
 import net.minecraft.client.gui.components.debug.DebugScreenEntry;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.LevelChunk;
+import nl.abelkrijgtalles.jsmmtod.config.JSMMTODConfig;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
@@ -16,5 +19,6 @@ public class DebugEntryTimeOfDay implements DebugScreenEntry {
             long minutes = timeOfDay % 1000 * 60 / 1000;
             displayer.addLine("Time of day: %d (%02d:%02d)".formatted(timeOfDay, hours, minutes));
         }
+        Minecraft.getInstance().setScreenAndShow(AutoConfigClient.getConfigScreen(JSMMTODConfig.class, Minecraft.getInstance().gui.screen()).get());
     }
 }

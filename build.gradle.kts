@@ -11,12 +11,15 @@ val loader_version: String by project
 val mod_version: String by project
 val maven_group: String by project
 
+val cloth_config_version: String by project
+val fabric_api_version: String by project
+val mod_menu_version: String by project
+
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	maven("https://maven.shedaniel.me/")
+	maven("https://maven.terraformersmc.com/") {
+		name = "Terraformers"
+	}
 }
 
 loom {
@@ -25,9 +28,16 @@ loom {
 	mods {
 		register(rootProject.name) {
 			sourceSet(sourceSets["client"])
+			sourceSet(sourceSets["main"])
 		}
 	}
 
+}
+
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
 }
 
 dependencies {
@@ -35,6 +45,10 @@ dependencies {
 	minecraft("com.mojang:minecraft:${minecraft_version}")
 	
 	implementation("net.fabricmc:fabric-loader:${loader_version}")
+
+	implementation("me.shedaniel.cloth:cloth-config-fabric:$cloth_config_version")
+	implementation("net.fabricmc.fabric-api:fabric-api:$fabric_api_version")
+	implementation("com.terraformersmc:modmenu:$mod_menu_version")
 	
 }
 
@@ -80,19 +94,32 @@ tasks.register("generateModJson", FabricModJsonV1Task::class) {
 		icon("assets/jsmmtod/icon.png")
 		environment = "client"
 		entrypoint("client", "nl.abelkrijgtalles.jsmmtod.JSMMTOD")
+		entrypoint("fabric-datagen", "nl.abelkrijgtalles.jsmmtod.datagen.JSMMTODDataGenerator")
+		entrypoint("modmenu", "nl.abelkrijgtalles.jsmmtod.config.JSMMTODModMenuIntegration")
 		mixin("jsmmtod.client.mixins.json") {
 			environment = "client"
 		}
 		depends("fabricloader", ">=$loader_version")
 		depends("java", ">=25")
+		// Probably won't cause issues using *
+		depends("cloth-config", "*")
 	}
 }
 
-// Make sure generateModJson
+// Make sure generateModJson and runDatagen get run when building the mod
 tasks.withType<ProcessResources>().configureEach {
 	dependsOn(tasks.named<FabricModJsonV1Task>("generateModJson"))
 }
 
 tasks.withType<Jar>().configureEach {
 	dependsOn(tasks.named<FabricModJsonV1Task>("generateModJson"))
+	dependsOn(tasks.named("runDatagen"))
+}
+
+tasks.build {
+	dependsOn(tasks.named("runDatagen"))
+}
+
+tasks.named("runDatagen") {
+	mustRunAfter(tasks.processResources)
 }
