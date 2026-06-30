@@ -24,7 +24,7 @@ public class DebugEntryTimeOfDay implements DebugScreenEntry {
             long minutes = timeOfDay % 1000 * 60 / 1000;
             long hours = (Math.floorDiv(timeOfDay, 1000) + 6) % 24;
             String timeString = "%02d:%02d".formatted(hours, minutes);
-            
+
             if (JSMMTOD.configAvailable()) {
                 JSMMTODConfig config = ClothConfigIntegration.getConfig();
                 if (config.getWhatToShow() == ShowOptions.SHOW_TICKS) {
