@@ -102,7 +102,8 @@ tasks.register("generateModJson", FabricModJsonV1Task::class) {
 		depends("fabricloader", ">=$loader_version")
 		depends("java", ">=25")
 		// Probably won't cause issues using *
-		depends("cloth-config", "*")
+		recommends("cloth-config", "*")
+		recommends("modmenu", "*")
 	}
 }
 

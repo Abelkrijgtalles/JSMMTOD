@@ -22,8 +22,11 @@
   ],
   "depends": {
     "fabricloader": "\u003e\u003d0.19.3",
-    "java": "\u003e\u003d25",
-    "cloth-config": "*"
+    "java": "\u003e\u003d25"
+  },
+  "recommends": {
+    "cloth-config": "*",
+    "modmenu": "*"
   },
   "name": "JUST SHOW ME MY TIME OF DAY!",
   "description": "Shows your time of day in the debug screen. That\u0027s it.",

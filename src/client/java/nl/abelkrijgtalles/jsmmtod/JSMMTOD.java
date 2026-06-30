@@ -1,10 +1,9 @@
 package nl.abelkrijgtalles.jsmmtod;
 
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.Identifier;
-import nl.abelkrijgtalles.jsmmtod.config.JSMMTODConfig;
+import nl.abelkrijgtalles.jsmmtod.config.ClothConfigIntegration;
 import nl.abelkrijgtalles.jsmmtod.mixin.DebugScreenEntriesAccessor;
 
 public class JSMMTOD implements ClientModInitializer {
@@ -12,8 +11,14 @@ public class JSMMTOD implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        AutoConfig.register(JSMMTODConfig.class, Toml4jConfigSerializer::new);
+        if (configAvailable()) {
+            ClothConfigIntegration.register();
+        }
 
         DebugScreenEntriesAccessor.invokeRegister(Identifier.fromNamespaceAndPath(MOD_ID, "time_of_day"), new DebugEntryTimeOfDay());
+    }
+
+    public static boolean configAvailable() {
+        return FabricLoader.getInstance().isModLoaded("cloth-config") && FabricLoader.getInstance().isModLoaded("modmenu");
     }
 }
