@@ -79,6 +79,7 @@ tasks.register("generateModJson", FabricModJsonV1Task::class) {
 		licenses.add("GPL-3.0-or-later")
 		icon("assets/jsmmtod/icon.png")
 		environment = "client"
+		entrypoint("client", "nl.abelkrijgtalles.jsmmtod.JSMMTOD")
 		mixin("jsmmtod.client.mixins.json") {
 			environment = "client"
 		}

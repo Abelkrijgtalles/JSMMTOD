@@ -3,6 +3,7 @@
 	"package": "nl.abelkrijgtalles.jsmmtod.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
+		"DebugScreenEntriesAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1
