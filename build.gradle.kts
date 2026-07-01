@@ -84,7 +84,7 @@ tasks.register("generateModJson", FabricModJsonV1Task::class) {
 		contactInformation.put("homepage", "https://github.com/Abelkrijgtalles/JSMMTOD")
 		contactInformation.put("sources", "https://github.com/Abelkrijgtalles/JSMMTOD")
 		contactInformation.put("issues", "https://github.com/Abelkrijgtalles/JSMMTOD/issues")
-		contactInformation.put("modrinth", "modrinth.com/project/jsmmtod")
+		contactInformation.put("modrinth", "https://modrinth.com/project/jsmmtod")
 		author("Abelpro678") {
 			contactInformation.put("homepage", "https://github.com/Abelkrijgtalles")
 			contactInformation.put("modrinth", "https://modrinth.com/user/Abelpro678")

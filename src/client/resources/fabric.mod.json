@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "jsmmtod",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "environment": "client",
   "entrypoints": {
     "fabric-datagen": [
@@ -43,7 +43,7 @@
     "homepage": "https://github.com/Abelkrijgtalles/JSMMTOD",
     "sources": "https://github.com/Abelkrijgtalles/JSMMTOD",
     "issues": "https://github.com/Abelkrijgtalles/JSMMTOD/issues",
-    "modrinth": ""
+    "modrinth": "https://modrinth.com/project/jsmmtod"
   },
   "license": "GPL-3.0-or-later",
   "icon": "assets/jsmmtod/icon.png"
